@@ -48,6 +48,7 @@ public final class CuentasContablesv11 {
 	private static final String XSLT = "/xslt/ce_catalogo_cuentas/CatalogoCuentas_1_1.xslt";
 
 	private static final String[] XSD = new String[] {
+		"/xsd/ce_catalogo_cuentas/CatalogosParaEsqContE.xsd",
 		"/xsd/ce_catalogo_cuentas/CatalogoCuentas_1_1.xsd"
 	};
 
