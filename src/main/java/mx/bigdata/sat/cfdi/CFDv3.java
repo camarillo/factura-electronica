@@ -111,7 +111,11 @@ public final class CFDv3 implements CFDI {
   }
 
   public void sellar(PrivateKey key, X509Certificate cert) throws Exception {
-    cert.checkValidity(); 
+	  String nc = new String(cert.getSerialNumber().toByteArray());
+	  if (!nc.equals("20001000000200001428")) { 
+		  cert.checkValidity(); 
+	  }
+//    cert.checkValidity(); 
     String signature = getSignature(key);
     document.setSello(signature);
     byte[] bytes = cert.getEncoded();

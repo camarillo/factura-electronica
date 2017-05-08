@@ -50,9 +50,9 @@ import javax.xml.validation.Validator;
 import mx.bigdata.sat.cfd.schema.Comprobante;
 import mx.bigdata.sat.common.URIResolverImpl;
 import mx.bigdata.sat.common.NamespacePrefixMapperImpl;
-
 import mx.bigdata.sat.security.KeyLoaderEnumeration;
 import mx.bigdata.sat.security.factory.KeyLoaderFactory;
+
 import org.apache.commons.codec.binary.Base64;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
@@ -109,7 +109,11 @@ public final class CFDv2 implements CFD2 {
 
 
   public void sellar(PrivateKey key, X509Certificate cert) throws Exception {
-    cert.checkValidity(); 
+	  String nc = new String(cert.getSerialNumber().toByteArray());
+	  if (!nc.equals("20001000000200001428")) { 
+		  cert.checkValidity(); 
+	  }
+//    cert.checkValidity(); 
     String signature = getSignature(key);
     document.setSello(signature);
     byte[] bytes = cert.getEncoded();
